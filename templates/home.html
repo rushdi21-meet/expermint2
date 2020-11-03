@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Online Shop - MEET Project 2020</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{url_for('static', filename='bootstrap.min.css')}}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{{url_for('static', filename='business-frontpage.css')}}" rel="stylesheet">
+  <style> html {
+  scroll-behavior: smooth;
+}</style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">MEET Online Store</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about-contact">About & Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#products">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#copyright&editor">Copyright & admin editor</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-primary py-5 mb-5">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-lg-12">
+          <h1 class="display-4 text-white mt-5 mb-2">MEET Our Shop!</h1>
+          <p class="lead mb-5 text-white-50">This is a demo shop, but its purpose is to outstand MEET's students abilities to code a fully functioning web application using: API's , flask routing & forms, databases and much more using the MVC module and finally deploying it to heroku!</p>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section id="about-contact"></section>
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-8 mb-5">
+        <h2>What We Do</h2>
+        <hr>
+        <p><b><i>Welcome</i></b> to our Online Store, the ultimate place where you can buy our exclusive products through Imagination and an implementation that seems to be true; but it isn't.</p>
+        <p><b><i>If</i></b> you click on the button below you would be to able find all of the excellent products of ours, So what are waiting for -> <u>Check it out.</u></p>
+        <a class="btn btn-primary btn-lg" href="store">Go to the Store &raquo;</a>
+      </div>
+      <div class="col-md-4 mb-5">
+        <h2>Contact Us</h2>
+        <hr>
+        <address>
+          <strong>Meet's Online Store</strong>
+          <br>MEET Nazareth Hub
+          <br>Baqa El-Gharbeyye, Is 3010000
+          <br>
+        </address>
+        <address>
+          <abbr title="Phone">Cellphone Number:</abbr>
+          (+972) 50-8695978
+          <br>
+          <abbr title="Email">Email:</abbr>
+          <a href="mailto:#">rushdidaqa@gmail.com</a>
+        </address>
+      </div>
+    </div>
+    <!-- /.row -->
+    <section id="products">
+      <div class="row">
+        <div class="col-md-4 mb-5">
+          <div class="card h-100">
+            <img class="card-img-top" src="https://bestandkosher.com/wp-content/uploads/2018/03/1-liter-milk-tnuva.jpg" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Milk</h4>
+              <p class="card-text">quality milk by strauss.</p>
+            </div>
+            <div class="card-footer">
+              <a href="store" class="btn btn-primary">Find Out More!</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-5">
+          <div class="card h-100">
+            <img class="card-img-top" src="https://cdn11.bigcommerce.com/s-4yzmyxd47t/images/stencil/2048x2048/products/3132/3198/833982__08374.1586270797.jpg?c=1" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Water</h4>
+              <p class="card-text">quality water by san benedetto.</p>
+            </div>
+            <div class="card-footer">
+              <a href="store" class="btn btn-primary">Find Out More!</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-5">
+          <div class="card h-100">
+            <img class="card-img-top" src="https://i1.wp.com/gatherforbread.com/wp-content/uploads/2015/08/Easiest-Yeast-Bread.jpg?resize=500%2C500&ssl=1" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Bread</h4>
+              <p class="card-text">Crunchy hot bread out of our bakery.</p>
+            </div>
+            <div class="card-footer">
+              <a href="store" class="btn btn-primary">Find Out More!</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+    </section>
+  </div>
+  <!-- /.container -->
+  <div id="google_translate_element" style="position:relative;"></div>
+   <script type="text/javascript">
+          function googleTranslateElementInit() {
+              new google.translate.TranslateElement(
+                  {pageLanguage: 'en'},
+                  'google_translate_element'
+              );
+          }
+      </script>
+      <script type="text/javascript" src=
+            "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+              </script>
+  <!-- Footer -->
+  <section id="copyright&editor">
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Rushdi Daqa 2020</p>
+        <form action="/home" method="POST"><h6 style="float: right;"><a href="login">if you are an admin click here</a></h6></form>
+      </div>
+    <!-- /.container -->
+    </footer>
+  </section>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{url_for('static', filename='jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='bootstrap.bundle.min.js')}}"></script>
+</body>
+
+</html>
