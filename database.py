@@ -40,6 +40,29 @@ def query_by_name(their_name):
 
 #print(query_by_name("Milk"))
 
+def query_by_desc(their_describtion):
+    """
+    Find the first student
+    in the database, by their name
+    """
+    try :
+        product = session.query(Product).filter_by(describtion=their_describtion).first()
+        return product.describtion
+    except:
+        return ("no such product")
+
+
+def query_by_img(their_image):
+    """
+    Find the first student
+    in the database, by their name
+    """
+    try :
+        product = session.query(Product).filter_by(img=their_image).first()
+        return product.img
+    except:
+        return ("no such product")
+
 
 def query_by_id(thier_id):
    # try:
@@ -59,18 +82,37 @@ def query_by_id_price(thier_id):
 
 
 def add_product(name, describtion, img, price, release_date, company, discount, available):
-    """
-    Add a student to the database, given
-    their name, year, and whether they have
-    finished the lab.
-    """
-    if name != query_by_name(name):
-        new_product = Product(name=name, describtion=describtion, img=img, price=price, release_date=release_date, company=company, discount=discount, available=available)
-        session.add(new_product)
-        session.commit()
-        return print("new product added!")
-    else:
-        return print("product already exist")
+    try:
+        """
+        Add a student to the database, given
+        their name, year, and whether they have
+        finished the lab.
+        """
+        if name != query_by_name(name):
+            if describtion != query_by_desc(describtion):
+                if img != query_by_img(img):
+                    if available == 'True':
+                        new_product = Product(name=name, describtion=describtion, img=img, price=price, release_date=release_date, company=company, discount=discount, available=True)
+                        session.add(new_product)
+                        session.commit()
+                        return print("new product added!")
+                    elif available == 'False':
+                        new_product = Product(name=name, describtion=describtion, img=img, price=price,
+                                              release_date=release_date, company=company, discount=discount,
+                                              available=False)
+                        session.add(new_product)
+                        session.commit()
+                        return print("new product added!")
+                    else:
+                        return print("error!")
+                else:
+                    return print("an existing product has the same image!")
+            else:
+                return print("an existing product has the same description!")
+        else:
+            return print("an existing product has the same name!")
+    except:
+        print("Coudln't add product")
 
 
 add_product("Milk", "quality milk by Tnuva.", "https://bestandkosher.com/wp-content/uploads/2018/03/1-liter-milk-tnuva.jpg", 8, "27-10-2020", "Tnuva", 15.5, True)
@@ -78,95 +120,135 @@ add_product("Milk", "quality milk by Tnuva.", "https://bestandkosher.com/wp-cont
 add_product("Water", "quality water by san benedetto.", "https://cdn11.bigcommerce.com/s-4yzmyxd47t/images/stencil/2048x2048/products/3132/3198/833982__08374.1586270797.jpg?c=1", 6, "27-10-2020", "san benedetto", 15.5, True)
 add_product("Bread", "Crunchy hot bread from our bakery.", "https://i1.wp.com/gatherforbread.com/wp-content/uploads/2015/08/Easiest-Yeast-Bread.jpg?resize=500%2C500&ssl=1", 4, "27-10-2020", "Meet's Bakery", None, True)
 add_product("Cereal", "The most delicious cereal made by Cornflakes", "https://target.scene7.com/is/image/Target/GUEST_61638d6a-b11c-4f1c-ab3f-9d9cff905ac3?wid=488&hei=488&fmt=pjpeg", 12, "27-10-2020", "Cornflakes", None, False)
-
-
+#add_product("hi", "The most delicious cereal made by Cornflakes", "https://target.scene7.com/is/image/Target/GUEST_61638d6a-b11c-4f1c-ab3f-9d9cff905ac3?wid=488&hei=488&fmt=pjpeg", 12, "27-10-2020", "Cornflakes", None, False)
+def dict_a_product():
+    product_dict = {}
+    for u in session.query(Product).all():
+        pro_dict = u.__dict__
+        product_dict[u] = pro_dict
+    print(product_dict)
+    return product_dict
 
 
 def update_products_availability(name, available):
-    """
-    Update a student in the database, with
-    whether or not they have finished the lab
-    """
-    product = session.query(Product).filter_by(name=name).first()
-    product.available = available
-    session.commit()
+    try:
+        """
+        Update a student in the database, with
+        whether or not they have finished the lab
+        """
+        product = session.query(Product).filter_by(name=name).first()
+        if available == "True":
+            product.available = True
+            session.commit()
+        elif available == "False":
+            product.available = False
+            session.commit()
+        else:
+            return print("Couldn't update availbilty even after passing the try")
+    except:
+        #session.rollback()
+        return print("Could't Update Availabity")
 
 def update_products_release_date(name, release_date):
-    """
-    Update a student in the database, with
-    whether or not they have finished the lab
-    """
-    product = session.query(Product).filter_by(name=name).first()
-    product.release_date = release_date
-    session.commit()
+    try:
+        """
+        Update a student in the database, with
+        whether or not they have finished the lab
+        """
+        product = session.query(Product).filter_by(name=name).first()
+        product.release_date = release_date
+        session.commit()
+    except:
+        return print("couldn't update release_date")
 
 def update_products_discount(name, discount):
-    """
-    Update a student in the database, with
-    whether or not they have finished the lab
-    """
-    product = session.query(Product).filter_by(name=name).first()
-    product.discount = discount
-    session.commit()
+    try:
+        """
+        Update a student in the database, with
+        whether or not they have finished the lab
+        """
+        product = session.query(Product).filter_by(name=name).first()
+        product.discount = discount
+        session.commit()
+    except:
+        return print("couldn't update discount")
 
 def update_products_company(name, company):
-    """
-    Update a student in the database, with
-    whether or not they have finished the lab
-    """
-    product = session.query(Product).filter_by(name=name).first()
-    product.company = company
-    session.commit()
+    try:
+        """
+        Update a student in the database, with
+        whether or not they have finished the lab
+        """
+        product = session.query(Product).filter_by(name=name).first()
+        product.company = company
+        session.commit()
+    except:
+        return print("Couldn't update company")
 
 def update_products_price(name, price):
-    """
-    Update a student in the database, with
-    whether or not they have finished the lab
-    """
-    product = session.query(Product).filter_by(name=name).first()
-    product.price = price
-    session.commit()
+    try:
+        """
+        Update a student in the database, with
+        whether or not they have finished the lab
+        """
+        product = session.query(Product).filter_by(name=name).first()
+        product.price = price
+        session.commit()
+    except:
+        return print("Couldn't update price")
 
 def update_products_img(name, img):
-    """
-    Update a student in the database, with
-    whether or not they have finished the lab
-    """
-    product = session.query(Product).filter_by(name=name).first()
-    product.img = img
-    session.commit()
+    try:
+        """
+        Update a student in the database, with
+        whether or not they have finished the lab
+        """
+        product = session.query(Product).filter_by(name=name).first()
+        product.img = img
+        session.commit()
+    except:
+        return print("Couldn't update image")
 
 def update_products_describtion(name, describtion):
-    """
-    Update a student in the database, with
-    whether or not they have finished the lab
-    """
-    product = session.query(Product).filter_by(name=name).first()
-    product.describtion = describtion
-    session.commit()
+    try:
+        """
+        Update a student in the database, with
+        whether or not they have finished the lab
+        """
+        product = session.query(Product).filter_by(name=name).first()
+        product.describtion = describtion
+        session.commit()
+    except:
+        return print("Couldn't update description")
 
 def update_products_name(name, new_name):
-    """
-    Update a student in the database, with
-    whether or not they have finished the lab
-    """
-    product = session.query(Product).filter_by(name=name).first()
-    product.name = new_name
-    session.commit()
+    try:
+        """
+        Update a student in the database, with
+        whether or not they have finished the lab
+        """
+        product = session.query(Product).filter_by(name=name).first()
+        product.name = new_name
+        session.commit()
+    except:
+        return print("Couldn't update name")
 
 #update_products_availability("Milk", False)
 
 
 def delete_product(their_name):
-    """
-    Delete all students with a
-    certain name from the database.
-    """
-    session.query(Product).filter_by(name=their_name).delete()
-    session.commit()
+    try:
+        """
+        Delete all students with a
+        certain name from the database.
+        """
+        session.query(Product).filter_by(name=their_name).delete()
+        session.commit()
+    except:
+        return print("Couldn't delete product")
 
 
-#delete_product("Milk")
+#delete_product("try")
 #delete_product("Water")
 #delete_product("Bread")
 

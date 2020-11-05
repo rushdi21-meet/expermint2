@@ -55,7 +55,10 @@
                     <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base nav-item nav-link" href="#sec-a0d8" style="padding: 10px 20px; font-size: 1.5em;">Greetings</a>
                 </li>
                 <li class="u-nav-item nav-item">
-                    <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base nav-item nav-link" href="#sec-922b" style="padding: 10px 20px; font-size: 1.5em;">Store & Cart</a>
+                    <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base nav-item nav-link" href="#sec-922b" style="padding: 10px 20px; font-size: 1.5em;">Store</a>
+                </li>
+                <li class="u-nav-item nav-item">
+                    <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base nav-item nav-link" href="#editor" style="padding: 10px 20px; font-size: 1.5em;">Editor</a>
                 </li>
                 <li class="u-nav-item nav-item">
                     <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base nav-item nav-link" href="#sec-926b" style="padding: 10px 20px; font-size: 1.5em;">Feedback</a>
@@ -67,7 +70,9 @@
               <div class="u-menu-close"></div>
               <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="#sec-a0d8">Greetings</a>
 </li></ul>
-              <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="#sec-922b">Store & Cart</a>
+              <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="#sec-922b">Store</a>
+</li></ul>
+              <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="#editor">Editor</a>
 </li></ul>
               <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="#sec-926b">Feedback</a>
 </li></ul>
@@ -106,7 +111,7 @@
                         <form action="/store" method="POST"><button type="submit" name="ALEXANDER" value="{% print(product['id']) %}" class="u-btn u-btn-rectangle u-button-style u-grey-10 u-btn-4">add to cart</button></form>
                     {% else %}
                         <h1></h1>
-                        <h3 class="u-text u-text-palette-3-base u-text-14">Not in Stock!</h3>
+                        <h3 class="u-text u-text-palette-3-base u-text-14">Out of Stock!</h3>
                     {% endif %}
                     </div>
                   </div>
@@ -114,15 +119,94 @@
             </div>
           {% endfor %}
         </div>
-        <p class="u-text u-text-default u-text-15"><button type="submit" id="show_button">Take a Look at your <b>Cart</b></button>
-          <div style="visibility: hidden;" id="show_div">
-              <h6>You have in Cart currently: {% for name in ca_id %}
-                    {% print(ca_id[name]) %},
-                  {% endfor %}</h6><p id="p1"></p>
-              <h6>It costs : {% print(ca_co) %}$</h6><p id="p2"></p>
-              <form action="/store" method="GET"><button type="submit" id="hide_button">Buy!</button></form></div>
-        </p>
+          </br></br>
+      <div>
+        <div class="u-align-center u-clearfix u-image u-shading u-section-1" style="color:black;" data-image-width="256" data-image-height="256" id="editor">
+            <p class="u-text u-text-default u-text-15"><button type="submit" id="show_button">Edit your products in the database   -> <b>Click here</b></button>
+              <div style="visibility: hidden;" id="show_div">
+                  <h1>What do you want to edit?</h1>
+                      <h6>Would you Like to Add a Product:</h6><p id="p1"></p>
+                      <button type="submit" id="show_button1">Yes!</button>
+                  <form action="/admin" method="POST" style="max-width:500px;margin:auto">
+                      <div style="visibility: hidden;" id="show_div1">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Product's name" name="its_name">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Product's description" name="its_description">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Product's image" name="its_img">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Product's price" name="its_price">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Product's release_date" name="its_release_date">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Product's company" name="its_company">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Product's discount" name="its_discount">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Product's availability" name="its_availability">
+                      <button type="submit" id="hide_button1">Submit!</button>
+                      </div>
+                  </form>
+                      <h6>Would you Like to Delete a Product:</h6><p id="p2"></p>
+                      <button type="submit" id="show_button2">Yes!</button>
+                  <form action="/admin" method="POST" style="max-width:500px;margin:auto">
+                      <div style="visibility: hidden;" id="show_div2">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Register the name to delete!" name="deleted_pro">
+                      <button type="submit" id="hide_button2">Submit!</button>
+                      </div>
+                  </form>
+                      <h6>Would you Like to Update a Product:</h6><p id="p3"></p>
+                      <button type="submit" id="show_button3">Yes!</button>
+                  <form action="/admin" method="POST" style="max-width:500px;margin:auto">
+                      <div style="visibility: hidden;" id="show_div3">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Its Current Name" name="former_name">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="NEW Name" name="new_name">
+                      <button type="submit" id="hide_button3">Submit!</button></br>
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Its Name" name="former_description">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="NEW Description" name="new_description">
+                      <button type="submit" id="hide_button4">Submit!</button></br>
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Its Name" name="former_img">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="NEW Image" name="new_img">
+                      <button type="submit" id="hide_button5">Submit!</button></br>
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Its Name" name="former_price">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="NEW Price" name="new_price">
+                      <button type="submit" id="hide_button6">Submit!</button></br>
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Its Name" name="former_release_date">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="NEW Release_Date" name="new_release_date">
+                      <button type="submit" id="hide_button7">Submit!</button></br>
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Its Name" name="former_company">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="NEW Company" name="new_company">
+                      <button type="submit" id="hide_button8">Submit!</button></br>
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Its Name" name="former_discount">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="NEW Discount" name="new_discount">
+                      <button type="submit" id="hide_button9">Submit!</button></br>
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="Its Name" name="former_available">
+                      <i class="fa fa-user icon"></i>
+                      <input class="input-field" type="text" placeholder="NEW Availability" name="new_available">
+                      <button type="submit" id="hide_button10">Submit!</button></br>
+                      </div>
+                  </form>
+              </div>
+            </p>
         <div></div>
+        </div></div>
     </section>
     <section class="u-clearfix u-section-3"  id="sec-926b">
       <div class="u-clearfix u-sheet u-sheet-1">

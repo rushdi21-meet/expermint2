@@ -106,7 +106,7 @@
                         <form action="/store" method="POST"><button type="submit" name="ALEXANDER" value="{% print(product['id']) %}" class="u-btn u-btn-rectangle u-button-style u-grey-10 u-btn-4">add to cart</button></form>
                     {% else %}
                         <h1></h1>
-                        <h3 class="u-text u-text-palette-3-base u-text-14">Not in Stock!</h3>
+                        <h3 class="u-text u-text-palette-3-base u-text-14">Out of Stock!</h3>
                     {% endif %}
                     </div>
                   </div>
@@ -120,7 +120,7 @@
                     {% print(ca_id[name]) %},
                   {% endfor %}</h6><p id="p1"></p>
               <h6>It costs : {% print(ca_co) %}$</h6><p id="p2"></p>
-              <form action="/store" method="GET"><button type="submit" id="hide_button">Buy!</button></form></div>
+          <form action="/store" method="GET"><script src="https://checkout.razorpay.com/v1/payment-button.js" id="hide_button" data-payment_button_id="pl_FxB432sGzEZBkq"> </script></br><button>If your Payment was successful Click here!</button> </form></div>
         </p>
     </section>
     <section class="u-clearfix u-section-3"  id="sec-926b">
