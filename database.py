@@ -335,7 +335,7 @@ def problem (username, password):
     else:
         add_admin(username, password)
 
-problem("rushdid", "1442004r")
+problem("rushdid", "daqar")
 problem("daqar", "rushdid")
 def exist(username, password):
     #q = session.query(Admin).filter(Admin.username == username)
